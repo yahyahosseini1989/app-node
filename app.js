@@ -1,13 +1,11 @@
-const { createInterface } = require('readline')
-const { writeFileSync } = require('fs')
+const http = require('http')
 
-const rl = createInterface({
-	input: process.stdin,
-	output: process.stdout,
+const server = http.createServer((req, res) => {
+	// console.log('req.url :>> ', req.url);
+	// console.log('req.method :>> ', req.method);
+	// console.log('req.headers :>> ', req.headers);
+	res.write('Hello NodeJs')
+	res.end()
 })
 
-rl.question('Product Name: ', (product) => {
-	console.log('product :>> ', product);
-	writeFileSync('product.txt', product)
-	rl.close()
-})
+server.listen(8000)
